@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PhongKhamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tBenhNhan">
+    <Key>
+      <PropertyRef Name="MaBenhNhan" />
+    </Key>
+    <Property Name="MaBenhNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenBenhNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tuoi" Type="Byte" />
+    <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tToaThuocs" Relationship="Self.FK_tToaThuoc_tBenhNhan" FromRole="tBenhNhan" ToRole="tToaThuoc" />
+  </EntityType>
+  <EntityType Name="tChiTietToaThuoc">
+    <Key>
+      <PropertyRef Name="STT" />
+      <PropertyRef Name="Thuoc" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" />
+    <Property Name="Thuoc" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="LieuDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tThuoc" Relationship="Self.FK_tChiTietToaThuoc_tThuoc" FromRole="tChiTietToaThuoc" ToRole="tThuoc" />
+    <NavigationProperty Name="tToaThuoc" Relationship="Self.FK_tChiTietToaThuoc_tToaThuoc" FromRole="tChiTietToaThuoc" ToRole="tToaThuoc" />
+  </EntityType>
+  <EntityType Name="tThuoc">
+    <Key>
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="TenThuoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NuocSX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="Int32" />
+    <Property Name="HanSuDung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="MaThuoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="tChiTietToaThuocs" Relationship="Self.FK_tChiTietToaThuoc_tThuoc" FromRole="tThuoc" ToRole="tChiTietToaThuoc" />
+  </EntityType>
+  <EntityType Name="tToaThuoc">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BenhNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BenhDuocChanDoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayKham" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tBenhNhan" Relationship="Self.FK_tToaThuoc_tBenhNhan" FromRole="tToaThuoc" ToRole="tBenhNhan" />
+    <NavigationProperty Name="tChiTietToaThuocs" Relationship="Self.FK_tChiTietToaThuoc_tToaThuoc" FromRole="tToaThuoc" ToRole="tChiTietToaThuoc" />
+  </EntityType>
+  <Association Name="FK_tToaThuoc_tBenhNhan">
+    <End Role="tBenhNhan" Type="Self.tBenhNhan" Multiplicity="1" />
+    <End Role="tToaThuoc" Type="Self.tToaThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tBenhNhan">
+        <PropertyRef Name="MaBenhNhan" />
+      </Principal>
+      <Dependent Role="tToaThuoc">
+        <PropertyRef Name="BenhNhan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tChiTietToaThuoc_tThuoc">
+    <End Role="tThuoc" Type="Self.tThuoc" Multiplicity="1" />
+    <End Role="tChiTietToaThuoc" Type="Self.tChiTietToaThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tThuoc">
+        <PropertyRef Name="MaThuoc" />
+      </Principal>
+      <Dependent Role="tChiTietToaThuoc">
+        <PropertyRef Name="Thuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tChiTietToaThuoc_tToaThuoc">
+    <End Role="tToaThuoc" Type="Self.tToaThuoc" Multiplicity="1" />
+    <End Role="tChiTietToaThuoc" Type="Self.tChiTietToaThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tToaThuoc">
+        <PropertyRef Name="STT" />
+      </Principal>
+      <Dependent Role="tChiTietToaThuoc">
+        <PropertyRef Name="STT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PhongKhamEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tBenhNhans" EntityType="Self.tBenhNhan" />
+    <EntitySet Name="tChiTietToaThuocs" EntityType="Self.tChiTietToaThuoc" />
+    <EntitySet Name="tThuocs" EntityType="Self.tThuoc" />
+    <EntitySet Name="tToaThuocs" EntityType="Self.tToaThuoc" />
+    <AssociationSet Name="FK_tToaThuoc_tBenhNhan" Association="Self.FK_tToaThuoc_tBenhNhan">
+      <End Role="tBenhNhan" EntitySet="tBenhNhans" />
+      <End Role="tToaThuoc" EntitySet="tToaThuocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tChiTietToaThuoc_tThuoc" Association="Self.FK_tChiTietToaThuoc_tThuoc">
+      <End Role="tThuoc" EntitySet="tThuocs" />
+      <End Role="tChiTietToaThuoc" EntitySet="tChiTietToaThuocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tChiTietToaThuoc_tToaThuoc" Association="Self.FK_tChiTietToaThuoc_tToaThuoc">
+      <End Role="tToaThuoc" EntitySet="tToaThuocs" />
+      <End Role="tChiTietToaThuoc" EntitySet="tChiTietToaThuocs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
