@@ -58,22 +58,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmBenhNhan.cs">
+    <Compile Include="Forms\frmBenhNhan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBenhNhan.Designer.cs">
+    <Compile Include="Forms\frmBenhNhan.Designer.cs">
       <DependentUpon>frmBenhNhan.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmThuoc.cs">
+    <Compile Include="Forms\frmThuoc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmThuoc.Designer.cs">
+    <Compile Include="Forms\frmThuoc.Designer.cs">
       <DependentUpon>frmThuoc.cs</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
@@ -107,13 +107,13 @@
     <Compile Include="tToaThuoc.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmBenhNhan.resx">
+    <EmbeddedResource Include="Forms\frmBenhNhan.resx">
       <DependentUpon>frmBenhNhan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmThuoc.resx">
+    <EmbeddedResource Include="Forms\frmThuoc.resx">
       <DependentUpon>frmThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

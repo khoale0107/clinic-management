@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PhongKham
+namespace PhongKham.Forms
 {
     public partial class frmThuoc : Form
     {
@@ -61,17 +61,22 @@ namespace PhongKham
                 return;
             }
 
-            var thuoc = new tThuoc();
 
-            thuoc.TenThuoc = txtTenThuoc.Text;
-            thuoc.NuocSX = txtNuocSX.Text;
-            thuoc.GhiChu = txtGhiChu.Text;
-            thuoc.HanSuDung = txtHanSuDung.Text;
-            thuoc.DonGia = (int)txtGia.Value;
+            var thuoc = new tThuoc
+            {
+                TenThuoc = txtTenThuoc.Text,
+                NuocSX = txtNuocSX.Text,
+                GhiChu = txtGhiChu.Text,
+                HanSuDung = txtHanSuDung.Text,
+                DonGia = (int?)txtGia.Value,
+            };
 
-            //Thêm thuốc
-            DataModule.db.tThuocs.Add(thuoc);
-            DataModule.db.SaveChanges();
+            //Thêm bệnh nhân
+            using (var context = new PhongKhamEntities())
+            {
+                context.tThuocs.Add(thuoc);
+                context.SaveChanges();
+            }
 
             MessageBox.Show("Thêm thuốc thành công.");
             loadData();
@@ -79,17 +84,25 @@ namespace PhongKham
 
         void loadData()
         {
-            var query = from row in DataModule.db.tThuocs
-                        select new
-                         {
-                             TenThuoc = row.TenThuoc,
-                             NuocSX = row.NuocSX,
-                             Gia = row.DonGia,
-                             HanSuDung = row.HanSuDung,
-                             GhiChu = row.GhiChu
-                         };
+            using (var context = new PhongKhamEntities())
+            {
+                var tThuocs = context.tThuocs.ToList();
 
-            dgvThuoc.DataSource = query.ToList();
+                DataTable table = new DataTable();
+                table.Columns.Add("ID", typeof(int));
+                table.Columns.Add("Tên thuốc", typeof(string));
+                table.Columns.Add("Nước sản xuất", typeof(string));
+                table.Columns.Add("Đơn giá", typeof(string));
+                table.Columns.Add("Hạn sử dụng", typeof(string));
+                table.Columns.Add("Ghi chú", typeof(string));
+
+                foreach (var t in tThuocs)
+                {
+                    table.Rows.Add(t.MaThuoc, t.TenThuoc, t.NuocSX, toCurrency((int)t.DonGia), t.HanSuDung, t.GhiChu);
+                }
+
+                dgvThuoc.DataSource = table;
+            }
         }
 
         string toCurrency(int price)

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PhongKham
+namespace PhongKham.Forms
 {
     public partial class frmMain : Form
     {
@@ -33,6 +33,11 @@ namespace PhongKham
         }
 
         private void toolStripToaThuoc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
         {
 
         }

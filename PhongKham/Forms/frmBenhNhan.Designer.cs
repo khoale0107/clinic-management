@@ -1,4 +1,4 @@
-﻿namespace PhongKham
+﻿namespace PhongKham.Forms
 {
     partial class frmBenhNhan
     {

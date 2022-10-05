@@ -25,12 +25,12 @@ E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\Phon
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\bin\Debug\EntityFramework.SqlServer.xml
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.csproj.AssemblyReference.cache
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.csproj.SuggestedBindingRedirects.cache
-E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.frmBenhNhan.resources
-E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.frmMain.resources
-E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.frmThuoc.resources
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.Properties.Resources.resources
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.csproj.GenerateResource.cache
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.csproj.CoreCompileInputs.cache
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.csproj.CopyComplete
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.exe
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.pdb
+E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.Forms.frmMain.resources
+E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.Forms.frmBenhNhan.resources
+E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.Forms.frmThuoc.resources
