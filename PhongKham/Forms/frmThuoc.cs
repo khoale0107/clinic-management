@@ -23,31 +23,6 @@ namespace PhongKham.Forms
             loadData();
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnThemThuoc_Click(object sender, EventArgs e)
         {
             //Kiểm tra empty input
@@ -61,14 +36,13 @@ namespace PhongKham.Forms
                 return;
             }
 
-
             var thuoc = new tThuoc
             {
                 TenThuoc = txtTenThuoc.Text,
                 NuocSX = txtNuocSX.Text,
                 GhiChu = txtGhiChu.Text,
                 HanSuDung = txtHanSuDung.Text,
-                DonGia = (int?)txtGia.Value,
+                DonGia = (int)txtGia.Value,
             };
 
             //Thêm bệnh nhân
@@ -98,13 +72,12 @@ namespace PhongKham.Forms
 
                 foreach (var t in tThuocs)
                 {
-                    table.Rows.Add(t.MaThuoc, t.TenThuoc, t.NuocSX, toCurrency((int)t.DonGia), t.HanSuDung, t.GhiChu);
+                    table.Rows.Add(t.MaThuoc, t.TenThuoc, t.NuocSX, toCurrency((int) t.DonGia), t.HanSuDung, t.GhiChu);
                 }
 
                 dgvThuoc.DataSource = table;
             }
         }
-
         string toCurrency(int price)
         {
             return price.ToString("0,# đ");

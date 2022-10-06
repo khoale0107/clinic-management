@@ -42,6 +42,7 @@
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnThemThuoc = new System.Windows.Forms.Button();
+            this.btnEditThuoc = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThuoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGia)).BeginInit();
             this.SuspendLayout();
@@ -86,7 +87,6 @@
             this.label3.Size = new System.Drawing.Size(94, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "Nước sản xuất:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -96,7 +96,6 @@
             this.label4.Size = new System.Drawing.Size(31, 16);
             this.label4.TabIndex = 4;
             this.label4.Text = "Giá:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtTenThuoc
             // 
@@ -133,7 +132,6 @@
             0,
             0,
             0});
-            this.txtGia.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // txtHanSuDung
             // 
@@ -150,7 +148,6 @@
             this.label5.Size = new System.Drawing.Size(85, 16);
             this.label5.TabIndex = 9;
             this.label5.Text = "Hạn sử dụng:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtGhiChu
             // 
@@ -167,7 +164,6 @@
             this.label6.Size = new System.Drawing.Size(54, 16);
             this.label6.TabIndex = 11;
             this.label6.Text = "Ghi chú:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // btnThemThuoc
             // 
@@ -179,11 +175,21 @@
             this.btnThemThuoc.UseVisualStyleBackColor = true;
             this.btnThemThuoc.Click += new System.EventHandler(this.btnThemThuoc_Click);
             // 
+            // btnEditThuoc
+            // 
+            this.btnEditThuoc.Location = new System.Drawing.Point(219, 256);
+            this.btnEditThuoc.Name = "btnEditThuoc";
+            this.btnEditThuoc.Size = new System.Drawing.Size(79, 35);
+            this.btnEditThuoc.TabIndex = 14;
+            this.btnEditThuoc.Text = "Cập nhật";
+            this.btnEditThuoc.UseVisualStyleBackColor = true;
+            // 
             // frmThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 450);
+            this.Controls.Add(this.btnEditThuoc);
             this.Controls.Add(this.btnThemThuoc);
             this.Controls.Add(this.txtGhiChu);
             this.Controls.Add(this.label6);
@@ -223,5 +229,6 @@
         private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnThemThuoc;
+        private System.Windows.Forms.Button btnEditThuoc;
     }
 }
