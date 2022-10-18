@@ -138,6 +138,8 @@ namespace PhongKham.Forms
             toolStripDelete.Enabled = false;
         }
 
+
+        //########################## DElete ###################################
         private void toolStripDelete_Click(object sender, EventArgs e)
         {
             using (var context = new PhongKhamEntities())

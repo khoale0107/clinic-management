@@ -26,8 +26,9 @@ namespace PhongKham.Forms
         {
             using (var context = new PhongKhamEntities())
             {
-                var tBenhNhans = context.tBenhNhans.ToList();
-                var tBenhNhans2 = context.tBenhNhans;
+                var tBenhNhans = from t in  context.tBenhNhans
+                                 orderby t.TenBenhNhan
+                                 select t;
 
                 DataTable table = new DataTable();
                 table.Columns.Add("ID", typeof(string));
