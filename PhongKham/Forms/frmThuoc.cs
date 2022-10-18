@@ -155,5 +155,7 @@ namespace PhongKham.Forms
             toolStripCancel.PerformClick();
             loadData();
         }
+
+        void a () { }
     }
 }
