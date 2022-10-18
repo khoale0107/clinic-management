@@ -15,19 +15,20 @@ namespace PhongKham.Forms
         private void frmBenhNhan_Load(object sender, EventArgs e)
         {
             loadData();
-            configLayout();
+            setupControls();
         }
-        void configLayout()
+        void setupControls()
         {
-            btnDeleteBN.Enabled = false;
-            btnEditBN.Enabled = false;
+            toolStripDelete.Enabled = false;
         }
 
         void loadData()
         {
             using (var context = new PhongKhamEntities())
             {
-                var tBenhNhans = context.tBenhNhans.ToList();
+                var tBenhNhans = from t in  context.tBenhNhans
+                                 orderby t.TenBenhNhan
+                                 select t;
 
                 DataTable table = new DataTable();
                 table.Columns.Add("ID", typeof(string));
@@ -43,7 +44,10 @@ namespace PhongKham.Forms
 
                 dgvBenhNhan.DataSource = table;
             }
-            //var ketqua = from benhNhan in DataModule.db.tBenhNhans
+
+
+
+            //var ketqua = from benhNhan in new PhongKhamEntities().tBenhNhans
             //             select new
             //             {
             //                 MaBenhNhan = benhNhan.MaBenhNhan,
@@ -55,8 +59,79 @@ namespace PhongKham.Forms
             //dgvBenhNhan.DataSource = ketqua.ToList();
         }
 
+
+
+        private void dgvBenhNhan_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex == dgvBenhNhan.Rows.Count - 1) {
+                //Chống lỗi khi nhấn vào tên cột (hàng trên cùng) hoặc hàng rỗng dưới cùng
+                return;
+            }
+            //DataGridViewRow row = dgvBenhNhan.Rows[dgvBenhNhan.SelectedCells[0].RowIndex];
+            DataGridViewRow row = dgvBenhNhan.Rows[e.RowIndex];
+
+            txtIdBN.Text = row.Cells[0].Value.ToString();
+            txtTenBenhNhan.Text = row.Cells[1].Value.ToString();
+            txtTuoi.Value = Convert.ToDecimal(row.Cells[2].Value);
+            txtDiaChi.Text = row.Cells[4].Value.ToString();
+
+            if (row.Cells[3].Value.ToString() == "Nam")
+                radioNam.Checked = true;
+            else
+                radioNu.Checked = true;
+
+            //enable controls
+            toolStripDelete.Enabled = true;
+        }
+
+
         //################### Them benh nhan ###############################
-        private void btnThemBN_Click(object sender, EventArgs e)
+        private void toolStripSave_Click(object sender, EventArgs e)
+        {
+            if (txtIdBN.Text.Length == 0)
+            {
+                ThemBenhNhan();
+            }
+            else
+            {
+                MessageBox.Show("cập nhật thành công");
+            }
+            
+        }
+
+
+        //######################## Xoa benh nhan ###############################
+        private void toolStripDelete_Click(object sender, EventArgs e)
+        {
+            using (var context = new PhongKhamEntities())
+            {
+                var stub = new tBenhNhan { MaBenhNhan = txtIdBN.Text };
+                context.tBenhNhans.Attach(stub);
+                context.tBenhNhans.Remove(stub);
+                context.SaveChanges();
+            }
+
+            MessageBox.Show("Đã xóa " + txtTenBenhNhan.Text);
+            toolStripDelete.Enabled = false;
+            toolStripCancel.PerformClick();
+            loadData();
+        }
+
+        //################### Cancel ###############################
+        private void toolStripCancel_Click(object sender, EventArgs e)
+        {
+            txtIdBN.Text = "";
+            txtDiaChi.Text = "";
+            txtTenBenhNhan.Text = "";
+            txtTuoi.Value = 0;
+            radioNam.Checked = true;
+
+            toolStripDelete.Enabled = false;
+        }
+
+
+        //################### Them benh nhan ###############################
+        public void ThemBenhNhan()
         {
             //Kiểm tra empty input
             if (string.IsNullOrEmpty(txtTenBenhNhan.Text) ||
@@ -69,7 +144,8 @@ namespace PhongKham.Forms
             //Tạo mã bệnh nhân
             var rand = new Random();
             var maBenhNhan = rand.NextDouble().ToString().Substring(2, 6);
-            var benhNhan = new tBenhNhan {
+            var benhNhan = new tBenhNhan
+            {
                 MaBenhNhan = maBenhNhan,
                 TenBenhNhan = txtTenBenhNhan.Text,
                 Tuoi = (byte)txtTuoi.Value,
@@ -85,6 +161,7 @@ namespace PhongKham.Forms
             }
 
             MessageBox.Show("Thêm bệnh nhân thành công.");
+            toolStripCancel.PerformClick();
             loadData();
 
             //Select row added
@@ -94,65 +171,9 @@ namespace PhongKham.Forms
                 {
                     row.Selected = true;
                     break;
-
                 }
             }
         }
 
-        //######################## Xoa benh nhan ###############################
-        private void btnDeleteBN_Click(object sender, EventArgs e)
-        {
-            using (var context = new PhongKhamEntities())
-            {
-                var stub = new tBenhNhan { MaBenhNhan = txtIdBN.Text };
-                context.tBenhNhans.Attach(stub);
-                context.tBenhNhans.Remove(stub);
-                context.SaveChanges();
-            }
-
-            MessageBox.Show("Đã xóa " + txtTenBenhNhan.Text);
-            btnDeleteBN.Enabled = false;
-            loadData();
-        }
-
-        private void dgvBenhNhan_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.RowIndex == dgvBenhNhan.Rows.Count - 1) {
-                //Chống lỗi khi nhấn vào tên cột (hàng trên cùng) hoặc hàng rỗng dưới cùng
-                return;
-            }
-            //DataGridViewRow row = dgvBenhNhan.Rows[dgvBenhNhan.SelectedCells[0].RowIndex];
-            DataGridViewRow row = dgvBenhNhan.Rows[e.RowIndex];
-
-            if (dgvBenhNhan.SelectedCells.Count == 0)
-            {
-                //chống lỗi khi nhấn Ctrl + click liên tiếp vào 1 cell hoặc cell rỗng cuối bảng
-                return;
-            }
-
-            txtIdBN.Text = row.Cells[0].Value.ToString();
-            txtTenBenhNhan.Text = row.Cells[1].Value.ToString();
-            txtTuoi.Value = Convert.ToDecimal(row.Cells[2].Value);
-            txtDiaChi.Text = row.Cells[4].Value.ToString();
-
-            if (row.Cells[3].Value.ToString() == "Nam")
-                radioNam.Checked = true;
-            else
-                radioNu.Checked = true;
-
-            btnDeleteBN.Enabled = true;
-            btnEditBN.Enabled = true;
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            txtIdBN.Text = "";
-            txtDiaChi.Text = "";
-            txtTenBenhNhan.Text = "";
-            txtTuoi.Value = 0;
-            radioNam.Checked = true;
-
-            btnDeleteBN.Enabled = false;
-        }
     }
 }

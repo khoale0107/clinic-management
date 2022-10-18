@@ -34,3 +34,4 @@ E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\Phon
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.Forms.frmMain.resources
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.Forms.frmBenhNhan.resources
 E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.Forms.frmThuoc.resources
+E:\HocPhan\Season5\CONG NGHE PHAN MEM\thuc hanh\PhongKham\clinic-management\PhongKham\obj\Debug\PhongKham.Forms.frmToaThuoc.resources

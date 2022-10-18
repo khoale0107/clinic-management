@@ -34,7 +34,7 @@ namespace PhongKham.Forms
 
         private void toolStripToaThuoc_Click(object sender, EventArgs e)
         {
-
+            FormModule.openForm(new frmToaThuoc());
         }
 
         private void frmMain_Load(object sender, EventArgs e)
