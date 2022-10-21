@@ -124,23 +124,23 @@
   <data name="toolStripSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF7SURBVDhPY5BWNWy08k+7bQ3EqoamnxMLSr7CsG9o1A89
-        M+u/Fk4ef8wc3P5YObj9lVRQ+alpF/5KRtXUjgEEFDTN5jete/wfhGNzqv/ffP4Gjpdt3PLfJTjqv62b
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF7SURBVDhPY5BWNWy08k+7bQ3EKoamnxMKir/CsG9o1A89
+        M+u/5o7uf0ztXf9Y2bv+lZBX/qlpF/5KRtXUjgEEFDTN5jete/wfhGNzqv/ffP4Gjpdt3PLfJTjqv62b
         139Hd+//AcnZ/229Q/7XrHjwX9Um9AFQOxNRBrj6Bf/PKCj775eQ+T+6oBasNrx++x9FQ+dGFAPC08r+
         n7x26//pG3fAeMGqdf/tvAP/u4XE/HfyDfrvG5/+39LNH6y2aMmD/8oWfrtQDCiZdeJ/WF7X/9DcTjgO
         zmr5H5jeAMZ+aXX/S+acxW0AKXgQGpBUN/9/UGoVQRySVvU/u2MlFgPyUaMQF77x7PX/lPxyTAMmLN7y
         f8uBI/9LqoEhjQfvOXnuf0peBaYBjZMW/t+y/zBWTch494mz2A1ILqj+v+/Uuf8TZ83Fiw9fuIrbgAt3
-        H/3fA7QBH75w/wluA4gJAwwvwLKzhokVPBvjw8nZFd8MzMx/mHqmPVU28ZoOAPXkgV8uVxnlAAAAAElF
+        H/3fA7QBH75w/wluA4gJAwwvwLKzuokVPBvjw8lZFd8MzMx+mHqmPVU28ZoOAKxxgTgyJUP+AAAAAElF
         TkSuQmCC
 </value>
   </data>
   <data name="toolStripDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAC7SURBVDhPpVNbDsIgEOQkxngjYY3/9ZOCnrJ6CWNMWtev
-        eoTaXVtDFJYmTEIC7Mwsj4xCDwe08Oo8nPG4X6sMiNPVcCENOlMpnngYaLTW3CQTqjFn4qPXveLO3420
-        yb8YhofTzWiwW7U1XMMC2u39edKbSZvnSIQlDRixI9I6tpd8p2i3cMQ6/yJpskRMKDIoukLRI0pfJdWy
-        YiaMEDkcjKCQ+ufYFSkG5WGiSNKEgiGJZxDnE0DdozPVG7D4phuuJKu5AAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAC8SURBVDhPpVNbCsIwEMxJRDyRJCv+17/axJ5SvYSIaF2/
+        2iPU7rZK0GRTyEAgyc7M5sEodLDDErrGwQkP26VKgDhNBWfSoDWF4omDnsZ9b66SCdWYM/HR6VZx5+9G
+        3ORfDP3T6uNgsFk8Krj4BSzXt1etV5M2zZEIcxowQkekdWgv+k7Bbv4Idf5F1GSOmJBlkHWFrEeUvkqq
+        JcVMGCByOBheIfbPoStSDPLDRJGkCQVDEn9AnDGAukVrijdUU6Xv5TSMtwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolStripCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

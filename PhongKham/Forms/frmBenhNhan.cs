@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhongKham.Modules;
+using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,10 +16,6 @@ namespace PhongKham.Forms
         private void frmBenhNhan_Load(object sender, EventArgs e)
         {
             loadData();
-            setupControls();
-        }
-        void setupControls()
-        {
             toolStripDelete.Enabled = false;
         }
 
@@ -45,8 +42,6 @@ namespace PhongKham.Forms
                 dgvBenhNhan.DataSource = table;
             }
 
-
-
             //var ketqua = from benhNhan in new PhongKhamEntities().tBenhNhans
             //             select new
             //             {
@@ -59,8 +54,7 @@ namespace PhongKham.Forms
             //dgvBenhNhan.DataSource = ketqua.ToList();
         }
 
-
-
+        //################### CLICK ###############################
         private void dgvBenhNhan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.RowIndex == dgvBenhNhan.Rows.Count - 1) {
@@ -84,23 +78,17 @@ namespace PhongKham.Forms
             toolStripDelete.Enabled = true;
         }
 
-
-        //################### Them benh nhan ###############################
+        //################### ADD or UPDATE ###############################
         private void toolStripSave_Click(object sender, EventArgs e)
         {
             if (txtIdBN.Text.Length == 0)
-            {
                 ThemBenhNhan();
-            }
             else
-            {
-                MessageBox.Show("cập nhật thành công");
-            }
-            
+                CapNhatBenhNhan();
         }
 
 
-        //######################## Xoa benh nhan ###############################
+        //######################## DELETE ###############################
         private void toolStripDelete_Click(object sender, EventArgs e)
         {
             using (var context = new PhongKhamEntities())
@@ -123,21 +111,19 @@ namespace PhongKham.Forms
             txtIdBN.Text = "";
             txtDiaChi.Text = "";
             txtTenBenhNhan.Text = "";
-            txtTuoi.Value = 0;
+            txtTuoi.Value = 1;
             radioNam.Checked = true;
 
             toolStripDelete.Enabled = false;
         }
 
-
-        //################### Them benh nhan ###############################
+        //################### ADD ###############################
         public void ThemBenhNhan()
         {
             //Kiểm tra empty input
-            if (string.IsNullOrEmpty(txtTenBenhNhan.Text) ||
-                string.IsNullOrEmpty(txtTuoi.Value.ToString()))
+            if (string.IsNullOrEmpty(txtTenBenhNhan.Text))
             {
-                MessageBox.Show("Hãy nhập đủ thông tin");
+                MessageBox.Show("Hãy nhập tên bệnh nhân.");
                 return;
             }
 
@@ -160,20 +146,40 @@ namespace PhongKham.Forms
                 context.SaveChanges();
             }
 
-            MessageBox.Show("Thêm bệnh nhân thành công.");
             toolStripCancel.PerformClick();
             loadData();
 
-            //Select row added
-            foreach (DataGridViewRow row in dgvBenhNhan.Rows)
-            {
-                if (row.Cells[0].Value.ToString() == maBenhNhan)
-                {
-                    row.Selected = true;
-                    break;
-                }
-            }
+            //Select added row
+            Utilities.selectDgvRow(dgvBenhNhan, maBenhNhan);
+            MessageBox.Show("Thêm bệnh nhân thành công.");
         }
 
+        //################### UPDATE ###############################
+        void CapNhatBenhNhan()
+        {
+            //Kiểm tra empty input
+            if (string.IsNullOrEmpty(txtTenBenhNhan.Text))
+            {
+                MessageBox.Show("Hãy nhập tên bệnh nhân");
+                return;
+            }
+
+            using (var context = new PhongKhamEntities())
+            {
+                var benhNhan = context.tBenhNhans.FirstOrDefault(x => x.MaBenhNhan == txtIdBN.Text); ;
+                benhNhan.MaBenhNhan = txtIdBN.Text;
+                benhNhan.TenBenhNhan = txtTenBenhNhan.Text;
+                benhNhan.Tuoi = (byte)txtTuoi.Value;
+                benhNhan.GioiTinh = radioNam.Checked == true ? radioNam.Text : radioNu.Text;
+                benhNhan.DiaChi = txtDiaChi.Text;
+                context.SaveChanges();
+            }
+
+            loadData();
+
+            //Select updated row
+            Utilities.selectDgvRow(dgvBenhNhan, txtIdBN.Text);
+            MessageBox.Show("Cập nhật bệnh nhân thành công.");
+        }
     }
 }

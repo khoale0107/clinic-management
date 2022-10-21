@@ -10,9 +10,8 @@ using Application = System.Windows.Forms.Application;
 
 namespace PhongKham.Modules
 {
-    internal class FormModule
+    internal class Utilities
     {
-        int a;
         public static void openForm(Form form)
         {
             if (Application.OpenForms[form.Name] != null)
@@ -25,6 +24,24 @@ namespace PhongKham.Modules
                 // Form is not open
                 form.Show();
             }
+        }
+
+        public static void selectDgvRow(DataGridView dgv, string id)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                var cellValue = row.Cells[0].Value;
+                if (cellValue != null && cellValue.ToString() == id)
+                {
+                    row.Selected = true;
+                    break;
+                }
+            }
+        }
+
+        public static string toCurrency(int price)
+        {
+            return price.ToString("0,# đ");
         }
     }
 }

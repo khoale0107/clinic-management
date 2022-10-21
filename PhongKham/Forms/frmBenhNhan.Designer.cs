@@ -162,9 +162,19 @@
             0,
             0,
             0});
+            this.txtTuoi.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.txtTuoi.Name = "txtTuoi";
             this.txtTuoi.Size = new System.Drawing.Size(297, 22);
             this.txtTuoi.TabIndex = 2;
+            this.txtTuoi.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // txtIdBN
             // 

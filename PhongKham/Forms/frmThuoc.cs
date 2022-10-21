@@ -22,11 +22,8 @@ namespace PhongKham.Forms
         private void frmThuoc_Load(object sender, EventArgs e)
         {
             loadData();
-            setupControls();
-        }
-        public void setupControls()
-        {
             toolStripDelete.Enabled = false;
+
         }
 
         void loadData()
@@ -45,29 +42,23 @@ namespace PhongKham.Forms
 
                 foreach (var t in tThuocs)
                 {
-                    table.Rows.Add(t.MaThuoc, t.TenThuoc, t.NuocSX, toCurrency((int) t.DonGia), t.HanSuDung, t.GhiChu);
+                    table.Rows.Add(t.MaThuoc, t.TenThuoc, t.NuocSX, Utilities.toCurrency((int) t.DonGia), t.HanSuDung, t.GhiChu);
                 }
 
                 dgvThuoc.DataSource = table;
             }
         }
-        string toCurrency(int price)
-        {
-            return price.ToString("0,# đ");
-        }
+        
 
         private void toolStripSave_Click(object sender, EventArgs e)
         {
             if (txtIDThuoc.Text.Length == 0)
-            {
                 ThemThuoc();
-            }
             else
-            {
-                MessageBox.Show("cap nhat thuoc thanh cong");
-            }
+                CapNhatThuoc();
         }
 
+        //########################## ADD ###################################
         public void ThemThuoc()
         {
             //Kiểm tra empty input
@@ -97,10 +88,45 @@ namespace PhongKham.Forms
                 context.SaveChanges();
             }
 
-            MessageBox.Show("Thêm thuốc thành công.");
             loadData();
+
+            Utilities.selectDgvRow(dgvThuoc, thuoc.MaThuoc.ToString());
+            MessageBox.Show("Thêm thuốc thành công.");
         }
 
+
+        //########################## UPDATE ###################################
+        void CapNhatThuoc()
+        {
+            //Kiểm tra empty input
+            if (string.IsNullOrEmpty(txtTenThuoc.Text) ||
+                string.IsNullOrEmpty(txtNuocSX.Text) ||
+                string.IsNullOrEmpty(txtGia.Value.ToString()) ||
+                string.IsNullOrEmpty(txtHanSuDung.Text) ||
+                string.IsNullOrEmpty(txtGhiChu.Text))
+            {
+                MessageBox.Show("Hãy nhập đủ thông tin");
+                return;
+            }
+
+            //Thêm bệnh nhân
+            using (var context = new PhongKhamEntities())
+            {
+                var thuoc = context.tThuocs.FirstOrDefault(x => x.MaThuoc.ToString() == txtIDThuoc.Text);
+                thuoc.TenThuoc = txtTenThuoc.Text;
+                thuoc.NuocSX = txtNuocSX.Text;
+                thuoc.GhiChu = txtGhiChu.Text;
+                thuoc.HanSuDung = txtHanSuDung.Text;
+                thuoc.DonGia = (int)txtGia.Value;
+                context.SaveChanges();
+            }
+
+            loadData();
+            Utilities.selectDgvRow(dgvThuoc, txtIDThuoc.Text);
+            MessageBox.Show("Cập nhật thuốc thành công.");
+        }
+
+        //########################## Cell Click ###################################
         private void dgvThuoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.RowIndex == dgvThuoc.Rows.Count - 1)
@@ -113,6 +139,7 @@ namespace PhongKham.Forms
             DataGridViewRow row = dgvThuoc.Rows[e.RowIndex];
             string gia = row.Cells[3].Value.ToString();
 
+            //fill fields
             txtIDThuoc.Text = row.Cells[0].Value.ToString();
             txtTenThuoc.Text = row.Cells[1].Value.ToString();
             txtNuocSX.Text = row.Cells[2].Value.ToString();
@@ -155,7 +182,5 @@ namespace PhongKham.Forms
             toolStripCancel.PerformClick();
             loadData();
         }
-
-        void a () { }
     }
 }

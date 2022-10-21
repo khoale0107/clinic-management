@@ -24,17 +24,17 @@ namespace PhongKham.Forms
             //frmBenhNhan.MdiParent = this;
             //frmBenhNhan.Show();
 
-            FormModule.openForm(new frmBenhNhan());
+            Utilities.openForm(new frmBenhNhan());
         }
 
         private void toolStripThuoc_Click(object sender, EventArgs e)
         {
-            FormModule.openForm(new frmThuoc());
+            Utilities.openForm(new frmThuoc());
         }
 
         private void toolStripToaThuoc_Click(object sender, EventArgs e)
         {
-            FormModule.openForm(new frmToaThuoc());
+            Utilities.openForm(new frmToaThuoc());
         }
 
         private void frmMain_Load(object sender, EventArgs e)

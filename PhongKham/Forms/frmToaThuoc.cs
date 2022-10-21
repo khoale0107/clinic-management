@@ -1,7 +1,9 @@
-﻿using System;
+﻿using PhongKham.Modules;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,7 +15,6 @@ namespace PhongKham.Forms
 {
     public partial class frmToaThuoc : Form
     {
-        PhongKhamEntities context = new PhongKhamEntities();
 
         public frmToaThuoc()
         {
@@ -29,7 +30,7 @@ namespace PhongKham.Forms
 
         void loadCombobox()
         {
-            var tbenhNhans = context.tBenhNhans.ToList();
+            var tbenhNhans = new PhongKhamEntities().tBenhNhans.ToList();
             cbBenhNhan.DisplayMember = "TenBenhNhan";
             cbBenhNhan.ValueMember = "MaBenhNhan";
             cbBenhNhan.DataSource = tbenhNhans;
@@ -59,18 +60,16 @@ namespace PhongKham.Forms
             }
         }
 
+        // ################################## ADD or UPDATE #######################################
         private void toolStripSave_Click(object sender, EventArgs e)
         {
             if (txtIdToaThuoc.Text.Length == 0)
-            {
                 themToatThuoc();
-            }
             else
-            {
-                MessageBox.Show("cap nhat toa thuoc thanh cong");
-            }
+                CapNhatToaThuoc();
         }
 
+        // ################################## ADD #######################################
         void themToatThuoc()
         {
             if (txtBenhDuocChanDoan.Text.Length == 0 ||
@@ -87,14 +86,45 @@ namespace PhongKham.Forms
                 NgayKham = dtNgayKham.Value,
             };
 
-            context.tToaThuocs.Add(toaThuoc);
-            context.SaveChanges();
+            using (var context = new PhongKhamEntities())
+            {
+                context.tToaThuocs.Add(toaThuoc);
+                context.SaveChanges();
+            }
 
             toolStripCancel.PerformClick();
+            Utilities.selectDgvRow(dgvToaThuoc, txtIdToaThuoc.Text);
             MessageBox.Show("Thêm toa thuốc thành công");
             loadData();
         }
 
+        // ################################## UPDATE #######################################
+        void CapNhatToaThuoc()
+        {
+            if (txtBenhDuocChanDoan.Text.Length == 0 ||
+                cbBenhNhan.SelectedIndex == -1)
+            {
+                MessageBox.Show("Hãy nhập đủ thông tin.");
+                return;
+            }
+
+
+
+            using (var context = new PhongKhamEntities())
+            {
+                var toaThuoc = context.tToaThuocs.FirstOrDefault(x => x.STT.ToString() == txtIdToaThuoc.Text);
+                toaThuoc.BenhDuocChanDoan = txtBenhDuocChanDoan.Text;
+                toaThuoc.BenhNhan = cbBenhNhan.SelectedValue.ToString();
+                toaThuoc.NgayKham = dtNgayKham.Value;
+                context.SaveChanges();
+            }
+
+            loadData();
+            Utilities.selectDgvRow(dgvToaThuoc, txtIdToaThuoc.Text);
+            MessageBox.Show("Cập nhật toa thuốc thành công");
+        }
+
+        // ################################## CANCEL #######################################
         private void toolStripCancel_Click(object sender, EventArgs e)
         {
             txtIdToaThuoc.Text = "";
@@ -104,6 +134,7 @@ namespace PhongKham.Forms
             toolStripDelete.Enabled = false;
         }
 
+        // ################################## CLICK #######################################
         private void dgvToaThuoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.RowIndex == dgvToaThuoc.Rows.Count - 1)
@@ -126,6 +157,7 @@ namespace PhongKham.Forms
             toolStripDelete.Enabled = true;
         }
 
+        // ################################## DELETE #######################################
         private void toolStripDelete_Click(object sender, EventArgs e)
         {
             using (var context = new PhongKhamEntities())
