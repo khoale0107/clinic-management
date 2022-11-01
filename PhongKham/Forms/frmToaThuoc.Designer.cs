@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmToaThuoc));
             this.label2 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripCancel = new System.Windows.Forms.ToolStripButton();
             this.txtIdToaThuoc = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,11 +42,8 @@
             this.dgvToaThuoc = new System.Windows.Forms.DataGridView();
             this.txtBenhDuocChanDoan = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.toolStripSave = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDelete = new System.Windows.Forms.ToolStripButton();
-            this.toolStripCancel = new System.Windows.Forms.ToolStripButton();
-            this.dtNgayKham = new System.Windows.Forms.DateTimePicker();
             this.cbBenhNhan = new System.Windows.Forms.ComboBox();
+            this.dtNgayKham = new System.Windows.Forms.DateTimePicker();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvToaThuoc)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -70,6 +70,34 @@
             this.toolStrip1.Size = new System.Drawing.Size(894, 27);
             this.toolStrip1.TabIndex = 21;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSave
+            // 
+            this.toolStripSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSave.Image")));
+            this.toolStripSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSave.Name = "toolStripSave";
+            this.toolStripSave.Size = new System.Drawing.Size(64, 24);
+            this.toolStripSave.Text = "Save";
+            this.toolStripSave.Click += new System.EventHandler(this.toolStripSave_Click);
+            // 
+            // toolStripDelete
+            // 
+            this.toolStripDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDelete.Image")));
+            this.toolStripDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDelete.Name = "toolStripDelete";
+            this.toolStripDelete.Size = new System.Drawing.Size(77, 24);
+            this.toolStripDelete.Text = "Delete";
+            this.toolStripDelete.Click += new System.EventHandler(this.toolStripDelete_Click);
+            // 
+            // toolStripCancel
+            // 
+            this.toolStripCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripCancel.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCancel.Image")));
+            this.toolStripCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripCancel.Name = "toolStripCancel";
+            this.toolStripCancel.Size = new System.Drawing.Size(57, 24);
+            this.toolStripCancel.Text = "Cancel";
+            this.toolStripCancel.Click += new System.EventHandler(this.toolStripCancel_Click);
             // 
             // txtIdToaThuoc
             // 
@@ -158,33 +186,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin toa thuốc";
             // 
-            // toolStripSave
+            // cbBenhNhan
             // 
-            this.toolStripSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSave.Image")));
-            this.toolStripSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSave.Name = "toolStripSave";
-            this.toolStripSave.Size = new System.Drawing.Size(64, 24);
-            this.toolStripSave.Text = "Save";
-            this.toolStripSave.Click += new System.EventHandler(this.toolStripSave_Click);
-            // 
-            // toolStripDelete
-            // 
-            this.toolStripDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDelete.Image")));
-            this.toolStripDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDelete.Name = "toolStripDelete";
-            this.toolStripDelete.Size = new System.Drawing.Size(77, 24);
-            this.toolStripDelete.Text = "Delete";
-            this.toolStripDelete.Click += new System.EventHandler(this.toolStripDelete_Click);
-            // 
-            // toolStripCancel
-            // 
-            this.toolStripCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripCancel.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCancel.Image")));
-            this.toolStripCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripCancel.Name = "toolStripCancel";
-            this.toolStripCancel.Size = new System.Drawing.Size(57, 24);
-            this.toolStripCancel.Text = "Cancel";
-            this.toolStripCancel.Click += new System.EventHandler(this.toolStripCancel_Click);
+            this.cbBenhNhan.FormattingEnabled = true;
+            this.cbBenhNhan.Location = new System.Drawing.Point(112, 70);
+            this.cbBenhNhan.Name = "cbBenhNhan";
+            this.cbBenhNhan.Size = new System.Drawing.Size(200, 24);
+            this.cbBenhNhan.TabIndex = 19;
             // 
             // dtNgayKham
             // 
@@ -194,14 +202,6 @@
             this.dtNgayKham.Name = "dtNgayKham";
             this.dtNgayKham.Size = new System.Drawing.Size(200, 22);
             this.dtNgayKham.TabIndex = 18;
-            // 
-            // cbBenhNhan
-            // 
-            this.cbBenhNhan.FormattingEnabled = true;
-            this.cbBenhNhan.Location = new System.Drawing.Point(112, 70);
-            this.cbBenhNhan.Name = "cbBenhNhan";
-            this.cbBenhNhan.Size = new System.Drawing.Size(200, 24);
-            this.cbBenhNhan.TabIndex = 19;
             // 
             // frmToaThuoc
             // 
