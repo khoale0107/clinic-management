@@ -121,28 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="toolStripSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAF7SURBVDhPY5BWNWy08k+7bQ3E8oamn6MLir7CsG9o1A89
-        M+u/RjZOfwysHP5Y2Tv8FZWS+6lpF/5KRtXUjgEEFDTN5jete/wfhGNzqv/ffP4Gjpdt3PLfJTjqv62b
-        139Hd+//AcnZ/229Q/7XrHjwX9Um9AFQOxNRBrj6Bf/PKCj775eQ+T+6oBasNrx++x9FQ+dGFAPC08r+
-        n7x26//pG3fAeMGqdf/tvAP/u4XE/HfyDfrvG5/+39LNH6y2aMmD/8oWfrtQDCiZdeJ/WF7X/9DcTjgO
-        zmr5H5jeAMZ+aXX/S+acxW0AKXgQGpBUN/9/UGoVQRySVvU/u2MlFgPyUaMQF77x7PX/lPxyTAMmLN7y
-        f8uBI/9LqoEhjQfvOXnuf0peBaYBjZMW/t+y/zBWTch494mz2A1ILqj+v+/Uuf8TZ83Fiw9fuIrbgAt3
-        H/3fA7QBH75w/wluA4gJAwwvwLKzmokVPBvjw8mpFd8MzMx+mHqmPVU28ZoOAI3RgLUf0ZzvAAAAAElF
-        TkSuQmCC
-</value>
-  </data>
-  <data name="toolStripDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAC9SURBVDhPpVNbCsIwEMxJRDyRJCv9rx+CNtFTqpcQEa3b
-        r3qE2l2rhJpsChkIJNmZ2TwYhQ7WuIFX7eCE+2KuEiBOXcGZNGhNqXjioKNx35mrZEI15gx8dLpV3Pm3
-        ETf5F0P3tPrYG6xmjwoufgG3y1tz0ItBm+ZIhCkNGKEj0jq0F32nYDd/hDqPETWZIiZkGWRdIesRpa+S
-        akkxE3qIHA6GV4j9c+iKFIP8MFEkaULBkMRfEOcTQN2iNeUbL8yl4wMVhbQAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="toolStripCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

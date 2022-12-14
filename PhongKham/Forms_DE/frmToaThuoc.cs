@@ -1,21 +1,19 @@
-﻿using PhongKham.Modules;
+﻿using DevExpress.XtraEditors;
+using PhongKham.Modules;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PhongKham.Forms
+namespace PhongKham.Forms_DE
 {
-    public partial class frmToaThuoc : Form
+    public partial class frmToaThuoc : DevExpress.XtraEditors.XtraForm
     {
-
         public frmToaThuoc()
         {
             InitializeComponent();
@@ -52,15 +50,15 @@ namespace PhongKham.Forms
 
                 foreach (var t in tToaThuocs)
                 {
-                    string ngaykham = ((DateTime) t.NgayKham).ToString("MMMM dd yyyy");
+                    string ngaykham = ((DateTime)t.NgayKham).ToString("MMMM dd yyyy");
                     table.Rows.Add(t.STT, t.tBenhNhan.TenBenhNhan, t.BenhDuocChanDoan, ngaykham);
                 }
 
                 dgvToaThuoc.DataSource = table;
+                gridControlBenhNhan.DataSource = table;
             }
         }
 
-        // ################################## CLICK #######################################
         private void dgvToaThuoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.RowIndex == dgvToaThuoc.Rows.Count - 1)
@@ -78,7 +76,7 @@ namespace PhongKham.Forms
             txtBenhDuocChanDoan.Text = row.Cells[2].Value.ToString();
             dtNgayKham.Value = DateTime.Parse(row.Cells[3].Value.ToString());
 
-            
+
             //enable controls
             toolStripDelete.Enabled = true;
         }
@@ -107,7 +105,7 @@ namespace PhongKham.Forms
         {
             using (var context = new PhongKhamEntities())
             {
-                var stub = new tToaThuoc { STT  = Convert.ToInt32(txtIdToaThuoc.Text) };
+                var stub = new tToaThuoc { STT = Convert.ToInt32(txtIdToaThuoc.Text) };
                 context.tToaThuocs.Attach(stub);
                 context.tToaThuocs.Remove(stub);
                 context.SaveChanges();
@@ -158,8 +156,6 @@ namespace PhongKham.Forms
                 return;
             }
 
-
-
             using (var context = new PhongKhamEntities())
             {
                 var toaThuoc = context.tToaThuocs.FirstOrDefault(x => x.STT.ToString() == txtIdToaThuoc.Text);
@@ -174,6 +170,9 @@ namespace PhongKham.Forms
             MessageBox.Show("Cập nhật toa thuốc thành công");
         }
 
+        private void groupControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
-    
 }

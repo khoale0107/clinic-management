@@ -1,4 +1,5 @@
-﻿using PhongKham.Modules;
+﻿using DevExpress.XtraEditors;
+using PhongKham.Modules;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,9 +11,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PhongKham.Forms
+namespace PhongKham.Forms_DE
 {
-    public partial class frmThuoc : Form
+    public partial class frmThuoc : DevExpress.XtraEditors.XtraForm
     {
         public frmThuoc()
         {
@@ -41,14 +42,13 @@ namespace PhongKham.Forms
 
                 foreach (var t in tThuocs)
                 {
-                    table.Rows.Add(t.MaThuoc, t.TenThuoc, t.NuocSX, Utilities.toCurrency((int) t.DonGia), t.HanSuDung, t.GhiChu);
+                    table.Rows.Add(t.MaThuoc, t.TenThuoc, t.NuocSX, Utilities.toCurrency((int)t.DonGia), t.HanSuDung, t.GhiChu);
                 }
 
                 dgvThuoc.DataSource = table;
             }
         }
-        
-        //########################## Cell Click ###################################
+
         private void dgvThuoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.RowIndex == dgvThuoc.Rows.Count - 1)
@@ -71,15 +71,6 @@ namespace PhongKham.Forms
 
             //enable controls
             toolStripDelete.Enabled = true;
-        }
-
-        //########################## ADD OR UPDATE ###################################
-        private void toolStripSave_Click(object sender, EventArgs e)
-        {
-            if (txtIDThuoc.Text.Length == 0)
-                ThemThuoc();
-            else
-                CapNhatThuoc();
         }
 
         //########################## ADD ###################################
@@ -132,7 +123,7 @@ namespace PhongKham.Forms
                 return;
             }
 
-            //Thêm bệnh nhân
+            //Cập nhật thuốc
             using (var context = new PhongKhamEntities())
             {
                 var thuoc = context.tThuocs.FirstOrDefault(x => x.MaThuoc.ToString() == txtIDThuoc.Text);
@@ -146,9 +137,16 @@ namespace PhongKham.Forms
 
             loadData();
             Utilities.selectDgvRow(dgvThuoc, txtIDThuoc.Text);
-            MessageBox.Show("Cập nhật thuốc thành công.");
+            MessageBox.Show("Cập nhật " + txtTenThuoc.Text + " thành công.");
         }
 
+        private void toolStripSave_Click(object sender, EventArgs e)
+        {
+            if (txtIDThuoc.Text.Length == 0)
+                ThemThuoc();
+            else
+                CapNhatThuoc();
+        }
 
         //########################## Cancel ###################################
         private void toolStripCancel_Click(object sender, EventArgs e)
@@ -169,7 +167,7 @@ namespace PhongKham.Forms
         {
             using (var context = new PhongKhamEntities())
             {
-                var stub = new tThuoc{ MaThuoc = Convert.ToInt32(txtIDThuoc.Text) };
+                var stub = new tThuoc { MaThuoc = Convert.ToInt32(txtIDThuoc.Text) };
                 context.tThuocs.Attach(stub);
                 context.tThuocs.Remove(stub);
                 context.SaveChanges();

@@ -130,9 +130,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 158);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 16);
+            this.label4.Size = new System.Drawing.Size(79, 16);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Ngày khám";
+            this.label4.Text = "Ngày khám:";
             // 
             // label1
             // 

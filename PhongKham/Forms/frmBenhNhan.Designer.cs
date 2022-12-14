@@ -223,7 +223,7 @@
             this.toolStripCancel});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1102, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1102, 31);
             this.toolStrip1.TabIndex = 19;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -232,7 +232,7 @@
             this.toolStripSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSave.Image")));
             this.toolStripSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSave.Name = "toolStripSave";
-            this.toolStripSave.Size = new System.Drawing.Size(64, 24);
+            this.toolStripSave.Size = new System.Drawing.Size(64, 28);
             this.toolStripSave.Text = "Save";
             this.toolStripSave.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.toolStripSave.Click += new System.EventHandler(this.toolStripSave_Click);
@@ -242,7 +242,7 @@
             this.toolStripDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDelete.Image")));
             this.toolStripDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDelete.Name = "toolStripDelete";
-            this.toolStripDelete.Size = new System.Drawing.Size(77, 24);
+            this.toolStripDelete.Size = new System.Drawing.Size(77, 28);
             this.toolStripDelete.Text = "Delete";
             this.toolStripDelete.Click += new System.EventHandler(this.toolStripDelete_Click);
             // 
@@ -252,7 +252,7 @@
             this.toolStripCancel.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCancel.Image")));
             this.toolStripCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripCancel.Name = "toolStripCancel";
-            this.toolStripCancel.Size = new System.Drawing.Size(57, 24);
+            this.toolStripCancel.Size = new System.Drawing.Size(57, 28);
             this.toolStripCancel.Text = "Cancel";
             this.toolStripCancel.Click += new System.EventHandler(this.toolStripCancel_Click);
             // 
