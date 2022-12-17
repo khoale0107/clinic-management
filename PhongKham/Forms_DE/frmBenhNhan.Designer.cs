@@ -118,7 +118,7 @@
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(872, 148);
             this.groupControl2.TabIndex = 14;
-            this.groupControl2.Text = "Chỉnh sửa Bệnh nhân";
+            this.groupControl2.Text = "Thông tin bệnh nhân";
             // 
             // label6
             // 
@@ -244,7 +244,7 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(872, 349);
             this.groupControl1.TabIndex = 15;
-            this.groupControl1.Text = "Danh sách Bệnh Nhân";
+            this.groupControl1.Text = "DANH SÁCH BỆNH NHÂN";
             // 
             // dgvBenhNhan
             // 
@@ -270,6 +270,7 @@
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.toolStrip1);
+            this.IconOptions.Image = global::PhongKham.Properties.Resources._3358576;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmBenhNhan";
             this.Text = "Danh mục bệnh nhân";

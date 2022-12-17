@@ -50,6 +50,7 @@
     <Reference Include="DevExpress.XtraGrid.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -111,6 +112,18 @@
     <Compile Include="Forms_DE\frmBenhNhan.Designer.cs">
       <DependentUpon>frmBenhNhan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms_DE\frmChiTietToaThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms_DE\frmChiTietToaThuoc.Designer.cs">
+      <DependentUpon>frmChiTietToaThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms_DE\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms_DE\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms_DE\frmThuoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +162,11 @@
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Utilities.cs" />
+    <Compile Include="PhongKhamDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhongKhamDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tBenhNhan.cs">
@@ -178,6 +196,12 @@
     <EmbeddedResource Include="Forms_DE\frmBenhNhan.resx">
       <DependentUpon>frmBenhNhan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms_DE\frmChiTietToaThuoc.resx">
+      <DependentUpon>frmChiTietToaThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms_DE\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms_DE\frmThuoc.resx">
       <DependentUpon>frmThuoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +227,18 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="PhongKhamDataSet.xsc">
+      <DependentUpon>PhongKhamDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PhongKhamDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PhongKhamDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PhongKhamDataSet.xss">
+      <DependentUpon>PhongKhamDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\DataSources\tToaThuoc.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -230,6 +266,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\3358576.png" />
     <None Include="Resources\diskette.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\delete1.png" />

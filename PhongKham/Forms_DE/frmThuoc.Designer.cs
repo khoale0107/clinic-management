@@ -120,7 +120,7 @@
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(874, 189);
             this.groupControl2.TabIndex = 15;
-            this.groupControl2.Text = "Chỉnh sửa Thuốc";
+            this.groupControl2.Text = "Thông tin thuốc";
             // 
             // txtHanSuDung
             // 
@@ -245,7 +245,7 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(874, 312);
             this.groupControl1.TabIndex = 16;
-            this.groupControl1.Text = "Danh sách Thuốc";
+            this.groupControl1.Text = "DANH SÁCH THUỐC";
             // 
             // dgvThuoc
             // 
@@ -271,6 +271,7 @@
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.toolStrip1);
+            this.IconOptions.Image = global::PhongKham.Properties.Resources._3358576;
             this.Name = "frmThuoc";
             this.Text = "Danh mục Thuốc";
             this.Load += new System.EventHandler(this.frmThuoc_Load);
