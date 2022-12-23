@@ -35,7 +35,6 @@
             this.toolStripCancel = new System.Windows.Forms.ToolStripButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.dtNgayKham = new DevExpress.XtraEditors.DateEdit();
             this.txtIdToaThuoc = new DevExpress.XtraEditors.TextEdit();
             this.txtBenhDuocChanDoan = new DevExpress.XtraEditors.TextEdit();
@@ -50,11 +49,12 @@
             this.dgvToaThuoc = new System.Windows.Forms.DataGridView();
             this.phongKhamDataSet = new PhongKham.PhongKhamDataSet();
             this.tToaThuocTableAdapter = new PhongKham.PhongKhamDataSetTableAdapters.tToaThuocTableAdapter();
+            this.cbBenhNhan = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgayKham.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgayKham.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIdToaThuoc.Properties)).BeginInit();
@@ -65,6 +65,8 @@
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvToaThuoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phongKhamDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbBenhNhan.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -123,7 +125,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lookUpEdit1);
+            this.groupBox2.Controls.Add(this.cbBenhNhan);
             this.groupBox2.Controls.Add(this.dtNgayKham);
             this.groupBox2.Controls.Add(this.txtIdToaThuoc);
             this.groupBox2.Controls.Add(this.txtBenhDuocChanDoan);
@@ -137,15 +139,6 @@
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin chung";
-            // 
-            // lookUpEdit1
-            // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(119, 80);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Size = new System.Drawing.Size(284, 22);
-            this.lookUpEdit1.TabIndex = 32;
             // 
             // dtNgayKham
             // 
@@ -292,6 +285,23 @@
             // 
             this.tToaThuocTableAdapter.ClearBeforeFill = true;
             // 
+            // cbBenhNhan
+            // 
+            this.cbBenhNhan.Location = new System.Drawing.Point(119, 80);
+            this.cbBenhNhan.Name = "cbBenhNhan";
+            this.cbBenhNhan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbBenhNhan.Properties.PopupView = this.searchLookUpEdit1View;
+            this.cbBenhNhan.Size = new System.Drawing.Size(284, 22);
+            this.cbBenhNhan.TabIndex = 46;
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
             // frmToaThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -310,7 +320,6 @@
             this.groupControl1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgayKham.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgayKham.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIdToaThuoc.Properties)).EndInit();
@@ -321,6 +330,8 @@
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvToaThuoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phongKhamDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbBenhNhan.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,6 +359,7 @@
         public DevExpress.XtraEditors.TextEdit txtBenhDuocChanDoan;
         public DevExpress.XtraEditors.TextEdit txtIdToaThuoc;
         public DevExpress.XtraEditors.DateEdit dtNgayKham;
-        public DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
+        public DevExpress.XtraEditors.SearchLookUpEdit cbBenhNhan;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
     }
 }

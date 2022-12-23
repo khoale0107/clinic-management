@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -28,7 +29,7 @@ namespace PhongKham.Forms_DE
             btnEditChiTietToaThuoc.Enabled = false;
             dtNgayKham.EditValue = DateTime.Now;
             txtIdToaThuoc.Properties.ReadOnly = true;
-            lookUpEdit1.EditValue = "";
+            cbBenhNhan.EditValue = "";
             //lookUpEdit1.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
 
 
@@ -50,10 +51,10 @@ namespace PhongKham.Forms_DE
                 table.Rows.Add(r.MaBenhNhan, r.TenBenhNhan, r.Tuoi);
             }
 
-            lookUpEdit1.Properties.DisplayMember = "Tên bệnh nhân";
-            lookUpEdit1.Properties.ValueMember = "Mã bệnh nhân";
+            cbBenhNhan.Properties.DisplayMember = "Tên bệnh nhân";
+            cbBenhNhan.Properties.ValueMember = "Mã bệnh nhân";
             
-            lookUpEdit1.Properties.DataSource = table;
+            cbBenhNhan.Properties.DataSource = table;
         }
 
         void loadData()
@@ -74,7 +75,11 @@ namespace PhongKham.Forms_DE
                 foreach (var t in tToaThuocs)
                 {
                     string ngaykham = ((DateTime)t.NgayKham).ToString("MMMM dd yyyy");
-                    table.Rows.Add(t.STT, t.tBenhNhan.TenBenhNhan, t.BenhDuocChanDoan, ngaykham, t.tBenhNhan.MaBenhNhan);
+                    if (t.BenhNhan != null)
+                    {
+                        table.Rows.Add(t.STT, t.tBenhNhan.TenBenhNhan, t.BenhDuocChanDoan, ngaykham, t.tBenhNhan.MaBenhNhan);
+
+                    }
                 }
 
                 dgvToaThuoc.DataSource = table;
@@ -100,7 +105,7 @@ namespace PhongKham.Forms_DE
             string idToaThuoc = row.Cells[0].Value.ToString();
 
             txtIdToaThuoc.Text = idToaThuoc;
-            lookUpEdit1.EditValue = row.Cells[4].Value.ToString();
+            cbBenhNhan.EditValue = row.Cells[4].Value.ToString();
             txtBenhDuocChanDoan.Text = row.Cells[2].Value.ToString();
             dtNgayKham.EditValue = DateTime.Parse(row.Cells[3].Value.ToString());
 
@@ -112,7 +117,7 @@ namespace PhongKham.Forms_DE
 
         }
 
-        private void loadChiTietToaThuoc()
+        public void loadChiTietToaThuoc()
         {
             var db = new PhongKhamEntities();
             var tChiTietToaThuocs = from record in db.tChiTietToaThuocs
@@ -150,7 +155,7 @@ namespace PhongKham.Forms_DE
             toolStripDelete.Enabled = false;
             dgvChiTietToaThuoc.DataSource = null;
             btnEditChiTietToaThuoc.Enabled = false;
-            lookUpEdit1.EditValue = "";
+            cbBenhNhan.EditValue = "";
         }
 
         // ################################## DELETE #######################################
@@ -159,13 +164,22 @@ namespace PhongKham.Forms_DE
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xóa?", "Xóa tóa thuốc", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                using (var context = new PhongKhamEntities())
-                {
-                    var stub = new tToaThuoc { STT = Convert.ToInt32(txtIdToaThuoc.Text) };
-                    context.tToaThuocs.Attach(stub);
-                    context.tToaThuocs.Remove(stub);
-                    context.SaveChanges();
-                }
+                var context = new PhongKhamEntities();
+
+                int stt = int.Parse(txtIdToaThuoc.Text);
+
+                var toaThuoc = context.tToaThuocs
+                    .Where(tt => tt.STT == stt)
+                    .Include(tt => tt.tChiTietToaThuocs)
+                    .FirstOrDefault();
+
+                context.tToaThuocs.Remove(toaThuoc);
+                context.SaveChanges();
+
+                //var stub2 = new tToaThuoc { STT = Convert.ToInt32(txtIdToaThuoc.Text) };
+                //context.tToaThuocs.Attach(stub2);
+                //context.tToaThuocs.Remove(stub2);
+                //context.SaveChanges();
 
                 MessageBox.Show("Đã xóa toa thuốc" + txtIdToaThuoc.Text);
                 toolStripDelete.Enabled = false;
@@ -178,15 +192,15 @@ namespace PhongKham.Forms_DE
         // ################################## ADD #######################################
         void themToatThuoc()
         {
-            if (txtBenhDuocChanDoan.Text.Length == 0)
+            if (cbBenhNhan.EditValue == "" || cbBenhNhan.EditValue == null)
             {
-                MessageBox.Show("Hãy nhập đủ thông tin.");
+                MessageBox.Show("Hãy chọn bệnh nhân.");
                 return;
             }
 
-            if (lookUpEdit1.EditValue == "")
+            if (txtBenhDuocChanDoan.Text.Length == 0)
             {
-                MessageBox.Show("Hãy chọn bệnh nhân.");
+                MessageBox.Show("Hãy nhập đủ thông tin.");
                 return;
             }
 
@@ -194,20 +208,25 @@ namespace PhongKham.Forms_DE
             {
                 BenhDuocChanDoan = txtBenhDuocChanDoan.Text,
                 //BenhNhan = cbBenhNhan.SelectedValue.ToString(),
-                BenhNhan = lookUpEdit1.EditValue.ToString(),
+                BenhNhan = cbBenhNhan.EditValue.ToString(),
                 NgayKham = (DateTime)dtNgayKham.EditValue,
             };
 
-            using (var context = new PhongKhamEntities())
-            {
-                context.tToaThuocs.Add(toaThuoc);
-                context.SaveChanges();
-            }
-
-            toolStripCancel.PerformClick();
-            Utilities.selectDgvRow(dgvToaThuoc, txtIdToaThuoc.Text);
-            MessageBox.Show("Thêm toa thuốc thành công");
+            var context = new PhongKhamEntities();
+            context.tToaThuocs.Add(toaThuoc);
+            context.SaveChanges();
+            
             loadData();
+
+            int newDgvLen = dgvToaThuoc.Rows.Count;
+            dgvToaThuoc.Rows[newDgvLen - 2].Selected = true;
+            dgvToaThuoc.FirstDisplayedScrollingRowIndex = newDgvLen - 2;
+
+            txtIdToaThuoc.Text = dgvToaThuoc.Rows[newDgvLen - 2].Cells[0].Value.ToString();
+            btnEditChiTietToaThuoc.Enabled = true;
+
+            MessageBox.Show("Thêm toa thuốc thành công");
+            
         }
 
         // ################################## UPDATE #######################################
@@ -219,7 +238,7 @@ namespace PhongKham.Forms_DE
                 return;
             }
 
-            if (lookUpEdit1.EditValue == "")
+            if (cbBenhNhan.EditValue == "")
             {
                 MessageBox.Show("Hãy chọn bệnh nhân.");
                 return;
@@ -230,7 +249,7 @@ namespace PhongKham.Forms_DE
                 var toaThuoc = context.tToaThuocs.FirstOrDefault(x => x.STT.ToString() == txtIdToaThuoc.Text);
                 toaThuoc.BenhDuocChanDoan = txtBenhDuocChanDoan.Text;
                 //toaThuoc.BenhNhan = cbBenhNhan.SelectedValue.ToString();
-                toaThuoc.BenhNhan = lookUpEdit1.EditValue.ToString();
+                toaThuoc.BenhNhan = cbBenhNhan.EditValue.ToString();
                 toaThuoc.NgayKham = (DateTime)dtNgayKham.EditValue;
                 context.SaveChanges();
             }
@@ -242,7 +261,7 @@ namespace PhongKham.Forms_DE
 
 
 
-        //######################### CHI TIET CLICK
+        //######################### CHI TIET CLICK ####################################
         private void btnEditChiTietToaThuoc_Click(object sender, EventArgs e)
         {
             frmChiTietToaThuoc frm = new frmChiTietToaThuoc(this);

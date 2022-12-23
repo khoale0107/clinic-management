@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -165,13 +166,25 @@ namespace PhongKham.Forms_DE
         //########################## DElete ###################################
         private void toolStripDelete_Click(object sender, EventArgs e)
         {
-            using (var context = new PhongKhamEntities())
-            {
-                var stub = new tThuoc { MaThuoc = Convert.ToInt32(txtIDThuoc.Text) };
-                context.tThuocs.Attach(stub);
-                context.tThuocs.Remove(stub);
-                context.SaveChanges();
-            }
+            //using (var context = new PhongKhamEntities())
+            //{
+            //    var stub = new tThuoc { MaThuoc = Convert.ToInt32(txtIDThuoc.Text) };
+            //    context.tThuocs.Attach(stub);
+            //    context.tThuocs.Remove(stub);
+            //    context.SaveChanges();
+            //}
+
+            var context = new PhongKhamEntities();
+
+            int maThuoc = int.Parse(txtIDThuoc.Text);
+
+            var thuoc = context.tThuocs
+                .Where(r => r.MaThuoc == maThuoc)
+                .Include(r => r.tChiTietToaThuocs)
+                .FirstOrDefault();
+
+            context.tThuocs.Remove(thuoc);
+            context.SaveChanges();
 
             MessageBox.Show("Đã xóa " + txtTenThuoc.Text);
             toolStripDelete.Enabled = false;

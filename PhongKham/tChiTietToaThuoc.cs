@@ -21,5 +21,7 @@ namespace PhongKham
     
         public virtual tThuoc tThuoc { get; set; }
         public virtual tToaThuoc tToaThuoc { get; set; }
+
+        
     }
 }

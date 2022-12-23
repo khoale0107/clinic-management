@@ -16,6 +16,7 @@ namespace PhongKham.Forms_DE
     {
         private frmToaThuoc frmToaThuoc;
         private bool isUpdating = false;
+        private int currentMaThuoc = 0;
 
         public frmChiTietToaThuoc()
         {
@@ -31,8 +32,8 @@ namespace PhongKham.Forms_DE
         private void frmChiTietToaThuoc_Load(object sender, EventArgs e)
         {
             string date = frmToaThuoc.dtNgayKham.EditValue.ToString().Split(' ')[0];
-            string tenBenhNhan = frmToaThuoc.lookUpEdit1.Properties
-                                    .GetDisplayText(frmToaThuoc.lookUpEdit1.EditValue);
+            string tenBenhNhan = frmToaThuoc.cbBenhNhan.Properties
+                                    .GetDisplayText(frmToaThuoc.cbBenhNhan.EditValue);
 
             this.txtIdToaThuoc.Text = frmToaThuoc.txtIdToaThuoc.Text;
             this.txtTenBenhNhan.Text = tenBenhNhan;
@@ -55,13 +56,14 @@ namespace PhongKham.Forms_DE
                                     select r;
 
             DataTable table = new DataTable();
+            table.Columns.Add("Mã thuốc", typeof(string));
             table.Columns.Add("Tên thuốc", typeof(string));
             table.Columns.Add("Số lượng", typeof(string));
             table.Columns.Add("Liều dùng", typeof(string));
 
             foreach (var r in tChiTietToaThuocs)
             {
-                table.Rows.Add(r.tThuoc.TenThuoc, r.SoLuong, r.LieuDung);
+                table.Rows.Add(r.tThuoc.MaThuoc ,r.tThuoc.TenThuoc, r.SoLuong, r.LieuDung);
             }
 
             dgvChiTietToaThuoc.DataSource = table;
@@ -94,6 +96,18 @@ namespace PhongKham.Forms_DE
         //##################################3 CLICK ########################################################
         private void dgvChiTietToaThuoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0 || e.RowIndex == dgvChiTietToaThuoc.Rows.Count - 1)
+            {
+                //Chống lỗi khi nhấn vào tên cột (hàng trên cùng), hàng rỗng dưới cùng
+                return;
+            }
+
+            DataGridViewRow row = dgvChiTietToaThuoc.Rows[e.RowIndex];
+            cbThuoc.EditValue = row.Cells[0].Value.ToString();
+            txtSoLuong.Text = row.Cells[2].Value.ToString();
+            txtLieuDung.Text = row.Cells[3].Value.ToString();
+            currentMaThuoc = int.Parse(cbThuoc.EditValue.ToString());
+
             isUpdating = true;
             toolStripDelete.Enabled = true;
         }
@@ -115,7 +129,45 @@ namespace PhongKham.Forms_DE
         //##################################3 ADD ########################################################
         void addChiTiet()
         {
-            Console.WriteLine("add");
+            if (cbThuoc.EditValue == "" || cbThuoc.EditValue == null)
+            {
+                MessageBox.Show("Hãy chọn thuốc.");
+                return;
+            }
+            if (txtLieuDung.Text == "")
+            {
+                MessageBox.Show("Hãy nhập liều dùng.");
+                return;
+            }
+
+            tChiTietToaThuoc chiTietToaThuoc = new tChiTietToaThuoc
+            {
+                STT = int.Parse(txtIdToaThuoc.Text),
+                Thuoc = int.Parse(cbThuoc.EditValue.ToString()),
+                SoLuong = (byte)txtSoLuong.Value,
+                LieuDung = txtLieuDung.Text,
+            };
+
+            try
+            {
+                var context = new PhongKhamEntities();
+                context.tChiTietToaThuocs.Add(chiTietToaThuoc);
+                context.SaveChanges();
+            }
+            catch (Exception error)
+            {
+                if (error is System.Data.Entity.Infrastructure.DbUpdateException)
+                    MessageBox.Show("Thuốc này đã có trong toa thuốc", "Thêm thất bại", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                    MessageBox.Show("Có lỗi xảy ra.");
+
+                return;
+            }
+
+            loadData();
+            frmToaThuoc.loadChiTietToaThuoc();
+
+            MessageBox.Show("Thêm chi tiết toa thuốc thành công");
         }
 
         //##################################3 UPDATE ########################################################
@@ -130,6 +182,30 @@ namespace PhongKham.Forms_DE
             isUpdating = false;
             cbThuoc.EditValue = "";
             toolStripDelete.Enabled = false;
+            txtSoLuong.Value = 1;
+            txtLieuDung.Text = "";
+        }
+
+        //##################################3 DELETE ########################################################
+        private void toolStripDelete_Click(object sender, EventArgs e)
+        {
+            var db = new PhongKhamEntities();
+            int stt = int.Parse(txtIdToaThuoc.Text);
+
+
+            var record = db.tChiTietToaThuocs
+                        .Where(r => r.STT == stt)
+                        .Where(r => r.Thuoc == currentMaThuoc).FirstOrDefault();
+
+            db.tChiTietToaThuocs.Remove(record);
+            db.SaveChanges();
+
+            toolStripCancel.PerformClick();
+            loadData();
+            frmToaThuoc.loadChiTietToaThuoc();
+            MessageBox.Show("Xóa thành công.");
+
+            
         }
     }
 }

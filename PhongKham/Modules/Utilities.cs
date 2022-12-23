@@ -34,6 +34,7 @@ namespace PhongKham.Modules
                 if (cellValue != null && cellValue.ToString() == id)
                 {
                     row.Selected = true;
+                    
                     break;
                 }
             }

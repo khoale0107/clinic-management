@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -87,13 +89,22 @@ namespace PhongKham.Forms_DE
         //######################## DELETE ###############################
         private void toolStripDelete_Click(object sender, EventArgs e)
         {
-            using (var context = new PhongKhamEntities())
-            {
-                var stub = new tBenhNhan { MaBenhNhan = txtIdBN.Text };
-                context.tBenhNhans.Attach(stub);
-                context.tBenhNhans.Remove(stub);
-                context.SaveChanges();
-            }
+            var context = new PhongKhamEntities();
+
+            //context.tToaThuocs.RemoveRange(context.tToaThuocs.Where(x => x.BenhNhan == txtIdBN.Text));
+            //context.SaveChanges();
+
+            var benhNhan = context.tBenhNhans
+                .Where(bn => bn.MaBenhNhan == txtIdBN.Text)
+                .Include(bn => bn.tToaThuocs.Select(tt => tt.tChiTietToaThuocs))
+                .FirstOrDefault();
+            context.tBenhNhans.Remove(benhNhan);
+            context.SaveChanges();
+
+            //var stub = new tBenhNhan { MaBenhNhan = txtIdBN.Text };
+            //context.tBenhNhans.Attach(stub);
+            //context.tBenhNhans.Remove(stub);
+            //context.SaveChanges();
 
             MessageBox.Show("Đã xóa " + txtTenBenhNhan.Text);
             toolStripDelete.Enabled = false;
@@ -129,7 +140,7 @@ namespace PhongKham.Forms_DE
 
             //Tạo mã bệnh nhân
             var rand = new Random();
-            var maBenhNhan = rand.NextDouble().ToString().Substring(2, 6);
+            var maBenhNhan = rand.NextDouble().ToString().Substring(2, 8);
             var benhNhan = new tBenhNhan
             {
                 MaBenhNhan = maBenhNhan,
