@@ -35,7 +35,6 @@
             this.toolStripCancel = new System.Windows.Forms.ToolStripButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.txtIdBN = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.dgvBenhNhan = new System.Windows.Forms.DataGridView();
+            this.txtDiaChi = new DevExpress.XtraEditors.MemoEdit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -54,6 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBenhNhan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -102,8 +103,8 @@
             this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupControl2.Controls.Add(this.label6);
             this.groupControl2.Controls.Add(this.txtDiaChi);
+            this.groupControl2.Controls.Add(this.label6);
             this.groupControl2.Controls.Add(this.txtIdBN);
             this.groupControl2.Controls.Add(this.label2);
             this.groupControl2.Controls.Add(this.label3);
@@ -128,14 +129,6 @@
             this.label6.Size = new System.Drawing.Size(24, 16);
             this.label6.TabIndex = 29;
             this.label6.Text = "ID:";
-            // 
-            // txtDiaChi
-            // 
-            this.txtDiaChi.Location = new System.Drawing.Point(516, 76);
-            this.txtDiaChi.Multiline = true;
-            this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(280, 57);
-            this.txtDiaChi.TabIndex = 25;
             // 
             // txtIdBN
             // 
@@ -262,6 +255,13 @@
             this.dgvBenhNhan.TabIndex = 2;
             this.dgvBenhNhan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBenhNhan_CellClick);
             // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.Location = new System.Drawing.Point(516, 76);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(258, 57);
+            this.txtDiaChi.TabIndex = 51;
+            // 
             // frmBenhNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -284,6 +284,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBenhNhan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,7 +298,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.TextBox txtIdBN;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -308,5 +308,6 @@
         private System.Windows.Forms.RadioButton radioNu;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dgvBenhNhan;
+        public DevExpress.XtraEditors.MemoEdit txtDiaChi;
     }
 }

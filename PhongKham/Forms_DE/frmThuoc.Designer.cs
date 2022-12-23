@@ -40,7 +40,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.txtTenThuoc = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtNuocSX = new System.Windows.Forms.TextBox();
@@ -48,6 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.dgvThuoc = new System.Windows.Forms.DataGridView();
+            this.txtGhiChu = new DevExpress.XtraEditors.MemoEdit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -55,6 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThuoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -103,13 +104,13 @@
             this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupControl2.Controls.Add(this.txtGhiChu);
             this.groupControl2.Controls.Add(this.txtHanSuDung);
             this.groupControl2.Controls.Add(this.txtIDThuoc);
             this.groupControl2.Controls.Add(this.label2);
             this.groupControl2.Controls.Add(this.label7);
             this.groupControl2.Controls.Add(this.label3);
             this.groupControl2.Controls.Add(this.label4);
-            this.groupControl2.Controls.Add(this.txtGhiChu);
             this.groupControl2.Controls.Add(this.txtTenThuoc);
             this.groupControl2.Controls.Add(this.label6);
             this.groupControl2.Controls.Add(this.txtNuocSX);
@@ -124,7 +125,7 @@
             // 
             // txtHanSuDung
             // 
-            this.txtHanSuDung.Location = new System.Drawing.Point(498, 79);
+            this.txtHanSuDung.Location = new System.Drawing.Point(533, 79);
             this.txtHanSuDung.Name = "txtHanSuDung";
             this.txtHanSuDung.Size = new System.Drawing.Size(253, 23);
             this.txtHanSuDung.TabIndex = 25;
@@ -167,19 +168,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(389, 46);
+            this.label4.Location = new System.Drawing.Point(424, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 16);
             this.label4.TabIndex = 20;
             this.label4.Text = "Giá:";
-            // 
-            // txtGhiChu
-            // 
-            this.txtGhiChu.Location = new System.Drawing.Point(498, 115);
-            this.txtGhiChu.Multiline = true;
-            this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(253, 59);
-            this.txtGhiChu.TabIndex = 27;
             // 
             // txtTenThuoc
             // 
@@ -191,7 +184,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(389, 118);
+            this.label6.Location = new System.Drawing.Point(424, 118);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 16);
             this.label6.TabIndex = 26;
@@ -211,7 +204,7 @@
             0,
             0,
             0});
-            this.txtGia.Location = new System.Drawing.Point(498, 43);
+            this.txtGia.Location = new System.Drawing.Point(533, 43);
             this.txtGia.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -229,7 +222,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(389, 82);
+            this.label5.Location = new System.Drawing.Point(424, 82);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 16);
             this.label5.TabIndex = 24;
@@ -263,6 +256,13 @@
             this.dgvThuoc.TabIndex = 1;
             this.dgvThuoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvThuoc_CellClick);
             // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(533, 117);
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(253, 67);
+            this.txtGhiChu.TabIndex = 52;
+            // 
             // frmThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -284,6 +284,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvThuoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,7 +303,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.TextBox txtTenThuoc;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNuocSX;
@@ -310,5 +310,6 @@
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.DataGridView dgvThuoc;
+        public DevExpress.XtraEditors.MemoEdit txtGhiChu;
     }
 }

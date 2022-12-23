@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -149,6 +151,11 @@ namespace PhongKham.Forms_DE
         // ################################## CANCEL #######################################
         private void toolStripCancel_Click(object sender, EventArgs e)
         {
+            cancel();
+        }
+
+        private void cancel()
+        {
             txtIdToaThuoc.Text = "";
             txtBenhDuocChanDoan.Text = "";
             dtNgayKham.EditValue = DateTime.Now;
@@ -181,10 +188,12 @@ namespace PhongKham.Forms_DE
                 //context.tToaThuocs.Remove(stub2);
                 //context.SaveChanges();
 
-                MessageBox.Show("Đã xóa toa thuốc" + txtIdToaThuoc.Text);
                 toolStripDelete.Enabled = false;
                 toolStripCancel.PerformClick();
                 loadData();
+
+                MessageBox.Show("Đã xóa toa thuốc" + txtIdToaThuoc.Text);
+
             }
             else if (dialogResult == DialogResult.No) {}
         }
@@ -212,20 +221,31 @@ namespace PhongKham.Forms_DE
                 NgayKham = (DateTime)dtNgayKham.EditValue,
             };
 
-            var context = new PhongKhamEntities();
-            context.tToaThuocs.Add(toaThuoc);
-            context.SaveChanges();
+            try
+            {
+                var context = new PhongKhamEntities();
+                context.tToaThuocs.Add(toaThuoc);
+                context.SaveChanges();
+
+                loadData();
+
+                int newDgvLen = dgvToaThuoc.Rows.Count;
+                dgvToaThuoc.Rows[newDgvLen - 2].Selected = true;
+                dgvToaThuoc.FirstDisplayedScrollingRowIndex = newDgvLen - 2;
+
+                txtIdToaThuoc.Text = dgvToaThuoc.Rows[newDgvLen - 2].Cells[0].Value.ToString();
+                btnEditChiTietToaThuoc.Enabled = true;
+                toolStripDelete.Enabled = true;
+
+                MessageBox.Show("Thêm toa thuốc thành công");
+            } 
+            catch (Exception ex) {
+                MessageBox.Show("Có lỗi xảy ra.");
+                return;
+            }
+
             
-            loadData();
 
-            int newDgvLen = dgvToaThuoc.Rows.Count;
-            dgvToaThuoc.Rows[newDgvLen - 2].Selected = true;
-            dgvToaThuoc.FirstDisplayedScrollingRowIndex = newDgvLen - 2;
-
-            txtIdToaThuoc.Text = dgvToaThuoc.Rows[newDgvLen - 2].Cells[0].Value.ToString();
-            btnEditChiTietToaThuoc.Enabled = true;
-
-            MessageBox.Show("Thêm toa thuốc thành công");
             
         }
 
@@ -244,19 +264,26 @@ namespace PhongKham.Forms_DE
                 return;
             }
 
-            using (var context = new PhongKhamEntities())
+            try
             {
-                var toaThuoc = context.tToaThuocs.FirstOrDefault(x => x.STT.ToString() == txtIdToaThuoc.Text);
-                toaThuoc.BenhDuocChanDoan = txtBenhDuocChanDoan.Text;
-                //toaThuoc.BenhNhan = cbBenhNhan.SelectedValue.ToString();
-                toaThuoc.BenhNhan = cbBenhNhan.EditValue.ToString();
-                toaThuoc.NgayKham = (DateTime)dtNgayKham.EditValue;
-                context.SaveChanges();
-            }
+                using (var context = new PhongKhamEntities())
+                {
+                    var toaThuoc = context.tToaThuocs.FirstOrDefault(x => x.STT.ToString() == txtIdToaThuoc.Text);
+                    toaThuoc.BenhDuocChanDoan = txtBenhDuocChanDoan.Text;
+                    //toaThuoc.BenhNhan = cbBenhNhan.SelectedValue.ToString();
+                    toaThuoc.BenhNhan = cbBenhNhan.EditValue.ToString();
+                    toaThuoc.NgayKham = (DateTime)dtNgayKham.EditValue;
+                    context.SaveChanges();
+                }
 
-            loadData();
-            Utilities.selectDgvRow(dgvToaThuoc, txtIdToaThuoc.Text);
-            MessageBox.Show("Cập nhật toa thuốc thành công");
+                loadData();
+                Utilities.selectDgvRow(dgvToaThuoc, txtIdToaThuoc.Text);
+                MessageBox.Show("Cập nhật toa thuốc thành công");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cập nhật thất bại.");
+            }
         }
 
 
@@ -268,5 +295,17 @@ namespace PhongKham.Forms_DE
             frm.ShowDialog();
         }
 
+        private void btnReloadCb_Click(object sender, EventArgs e)
+        {
+            loadCombobox();
+            cbBenhNhan.EditValue = "";
+        }
+
+        //######################### Lam moi datagridview ####################################
+        private void btnReloadDgv_Click(object sender, EventArgs e)
+        {
+            loadData();
+            cancel();
+        }
     }
 }

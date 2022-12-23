@@ -165,6 +165,7 @@ namespace PhongKham.Forms_DE
             }
 
             loadData();
+            toolStripCancel.PerformClick();
             frmToaThuoc.loadChiTietToaThuoc();
 
             MessageBox.Show("Thêm chi tiết toa thuốc thành công");
@@ -173,7 +174,41 @@ namespace PhongKham.Forms_DE
         //##################################3 UPDATE ########################################################
         void updateChiTiet()
         {
-            Console.WriteLine("update");
+            if (cbThuoc.EditValue == "" || cbThuoc.EditValue == null)
+            {
+                MessageBox.Show("Hãy chọn thuốc.");
+                return;
+            }
+            if (txtLieuDung.Text == "")
+            {
+                MessageBox.Show("Hãy nhập liều dùng.");
+                return;
+            }
+
+
+
+            try
+            {
+                var db = new PhongKhamEntities();
+
+                int stt = int.Parse(txtIdToaThuoc.Text);
+
+                var record = db.tChiTietToaThuocs
+                            .Where(r => r.STT == stt)
+                            .Where(r => r.Thuoc == currentMaThuoc).FirstOrDefault();
+
+                record.LieuDung = txtLieuDung.Text;
+                record.SoLuong = (byte)txtSoLuong.Value;
+                db.SaveChanges();
+                loadData();
+
+                MessageBox.Show("Cập nhật thành công.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cập nhật thất bại.");
+            }
+
         }
 
         //##################################3 CANCEL ########################################################
@@ -192,7 +227,6 @@ namespace PhongKham.Forms_DE
             var db = new PhongKhamEntities();
             int stt = int.Parse(txtIdToaThuoc.Text);
 
-
             var record = db.tChiTietToaThuocs
                         .Where(r => r.STT == stt)
                         .Where(r => r.Thuoc == currentMaThuoc).FirstOrDefault();
@@ -207,5 +241,6 @@ namespace PhongKham.Forms_DE
 
             
         }
+
     }
 }

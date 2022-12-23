@@ -38,5 +38,20 @@ namespace PhongKham.Forms_DE
         {
             Utilities.openForm(new Forms_DE.frmThuoc());
         }
+
+        private void tìmBệnhNhânToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utilities.openForm(new Forms_DE.frmTimBenhNhan());
+        }
+
+        private void tìmThuốcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utilities.openForm(new Forms_DE.frmTimThuoc());
+        }
+
+        private void tìmToaThuocToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utilities.openForm(new Forms_DE.frmTimToaThuoc());
+        }
     }
 }

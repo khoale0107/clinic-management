@@ -31,12 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChiTietToaThuoc));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSave = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDelete = new System.Windows.Forms.ToolStripButton();
-            this.toolStripCancel = new System.Windows.Forms.ToolStripButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.cbThuoc = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.txtSoLuong = new System.Windows.Forms.NumericUpDown();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -52,15 +47,20 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.dgvChiTietToaThuoc = new System.Windows.Forms.DataGridView();
+            this.cbThuoc = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.toolStripSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbThuoc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoLuong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietToaThuoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbThuoc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -83,37 +83,9 @@
             this.toolStripCancel});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1025, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1025, 31);
             this.toolStrip1.TabIndex = 17;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSave
-            // 
-            this.toolStripSave.Image = global::PhongKham.Properties.Resources.diskette;
-            this.toolStripSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSave.Name = "toolStripSave";
-            this.toolStripSave.Size = new System.Drawing.Size(64, 24);
-            this.toolStripSave.Text = "Save";
-            this.toolStripSave.Click += new System.EventHandler(this.toolStripSave_Click);
-            // 
-            // toolStripDelete
-            // 
-            this.toolStripDelete.Image = global::PhongKham.Properties.Resources.delete1;
-            this.toolStripDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDelete.Name = "toolStripDelete";
-            this.toolStripDelete.Size = new System.Drawing.Size(77, 24);
-            this.toolStripDelete.Text = "Delete";
-            this.toolStripDelete.Click += new System.EventHandler(this.toolStripDelete_Click);
-            // 
-            // toolStripCancel
-            // 
-            this.toolStripCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripCancel.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCancel.Image")));
-            this.toolStripCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripCancel.Name = "toolStripCancel";
-            this.toolStripCancel.Size = new System.Drawing.Size(57, 24);
-            this.toolStripCancel.Text = "Cancel";
-            this.toolStripCancel.Click += new System.EventHandler(this.toolStripCancel_Click);
             // 
             // groupControl1
             // 
@@ -131,23 +103,6 @@
             this.groupControl1.TabIndex = 34;
             this.groupControl1.Text = "Chi tiết toa thuốc";
             // 
-            // cbThuoc
-            // 
-            this.cbThuoc.Location = new System.Drawing.Point(127, 46);
-            this.cbThuoc.Name = "cbThuoc";
-            this.cbThuoc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbThuoc.Properties.PopupView = this.searchLookUpEdit1View;
-            this.cbThuoc.Size = new System.Drawing.Size(234, 22);
-            this.cbThuoc.TabIndex = 45;
-            // 
-            // searchLookUpEdit1View
-            // 
-            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
             // labelControl9
             // 
             this.labelControl9.Location = new System.Drawing.Point(23, 123);
@@ -158,15 +113,15 @@
             // 
             // txtSoLuong
             // 
-            this.txtSoLuong.Location = new System.Drawing.Point(127, 83);
+            this.txtSoLuong.Location = new System.Drawing.Point(102, 83);
             this.txtSoLuong.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.txtSoLuong.Name = "txtSoLuong";
-            this.txtSoLuong.Size = new System.Drawing.Size(233, 23);
-            this.txtSoLuong.TabIndex = 41;
+            this.txtSoLuong.Size = new System.Drawing.Size(258, 23);
+            this.txtSoLuong.TabIndex = 2;
             this.txtSoLuong.Value = new decimal(new int[] {
             1,
             0,
@@ -191,14 +146,15 @@
             // 
             // txtLieuDung
             // 
-            this.txtLieuDung.Location = new System.Drawing.Point(128, 123);
+            this.txtLieuDung.Location = new System.Drawing.Point(103, 123);
             this.txtLieuDung.Multiline = true;
             this.txtLieuDung.Name = "txtLieuDung";
-            this.txtLieuDung.Size = new System.Drawing.Size(233, 57);
-            this.txtLieuDung.TabIndex = 33;
+            this.txtLieuDung.Size = new System.Drawing.Size(257, 57);
+            this.txtLieuDung.TabIndex = 3;
             // 
             // txtTenBenhNhan
             // 
+            this.txtTenBenhNhan.Enabled = false;
             this.txtTenBenhNhan.Location = new System.Drawing.Point(130, 76);
             this.txtTenBenhNhan.Name = "txtTenBenhNhan";
             this.txtTenBenhNhan.ReadOnly = true;
@@ -207,6 +163,7 @@
             // 
             // txtIdToaThuoc
             // 
+            this.txtIdToaThuoc.Enabled = false;
             this.txtIdToaThuoc.Location = new System.Drawing.Point(130, 42);
             this.txtIdToaThuoc.Name = "txtIdToaThuoc";
             this.txtIdToaThuoc.ReadOnly = true;
@@ -215,6 +172,7 @@
             // 
             // txtNgayKham
             // 
+            this.txtNgayKham.Enabled = false;
             this.txtNgayKham.Location = new System.Drawing.Point(129, 112);
             this.txtNgayKham.Name = "txtNgayKham";
             this.txtNgayKham.ReadOnly = true;
@@ -223,6 +181,7 @@
             // 
             // txtBenhDuocChanDOan
             // 
+            this.txtBenhDuocChanDOan.Enabled = false;
             this.txtBenhDuocChanDOan.Location = new System.Drawing.Point(159, 150);
             this.txtBenhDuocChanDOan.Multiline = true;
             this.txtBenhDuocChanDOan.Name = "txtBenhDuocChanDOan";
@@ -297,6 +256,51 @@
             this.dgvChiTietToaThuoc.TabIndex = 45;
             this.dgvChiTietToaThuoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChiTietToaThuoc_CellClick);
             // 
+            // cbThuoc
+            // 
+            this.cbThuoc.Location = new System.Drawing.Point(102, 46);
+            this.cbThuoc.Name = "cbThuoc";
+            this.cbThuoc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbThuoc.Properties.PopupView = this.searchLookUpEdit1View;
+            this.cbThuoc.Size = new System.Drawing.Size(258, 22);
+            this.cbThuoc.TabIndex = 1;
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // toolStripSave
+            // 
+            this.toolStripSave.Image = global::PhongKham.Properties.Resources.diskette;
+            this.toolStripSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSave.Name = "toolStripSave";
+            this.toolStripSave.Size = new System.Drawing.Size(64, 28);
+            this.toolStripSave.Text = "Save";
+            this.toolStripSave.Click += new System.EventHandler(this.toolStripSave_Click);
+            // 
+            // toolStripDelete
+            // 
+            this.toolStripDelete.Image = global::PhongKham.Properties.Resources.delete1;
+            this.toolStripDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDelete.Name = "toolStripDelete";
+            this.toolStripDelete.Size = new System.Drawing.Size(77, 28);
+            this.toolStripDelete.Text = "Delete";
+            this.toolStripDelete.Click += new System.EventHandler(this.toolStripDelete_Click);
+            // 
+            // toolStripCancel
+            // 
+            this.toolStripCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripCancel.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCancel.Image")));
+            this.toolStripCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripCancel.Name = "toolStripCancel";
+            this.toolStripCancel.Size = new System.Drawing.Size(57, 28);
+            this.toolStripCancel.Text = "Cancel";
+            this.toolStripCancel.Click += new System.EventHandler(this.toolStripCancel_Click);
+            // 
             // frmChiTietToaThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -316,13 +320,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbThuoc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoLuong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietToaThuoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbThuoc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
